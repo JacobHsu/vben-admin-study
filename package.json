@@ -29,5 +29,6 @@
     "vue-eslint-parser": "^8.2.0",
     "vue-tsc": "^0.29.8",
     "dotenv": "^14.2.0"
-  }
+  },
+  "license": "MIT"
 }
