@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue'
 import { loadEnv } from 'vite';
 import { resolve } from 'path';
 import { wrapperEnv } from './build/utils';
+import { createVitePlugins } from './build/vite/plugin';
 
 function pathResolve(dir: string) {
   return resolve(process.cwd(), '.', dir);
@@ -18,6 +19,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
   const viteEnv = wrapperEnv(env);
 
   const { VITE_PORT, VITE_PUBLIC_PATH, VITE_PROXY, VITE_DROP_CONSOLE } = viteEnv;
+
+  const isBuild = command === 'build';
 
   return {
     base: VITE_PUBLIC_PATH,
@@ -40,6 +43,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         },
       ],
     },
-    plugins: [vue()]
+    // The vite plugin used by the project. The quantity is large, so it is separately extracted and managed
+    plugins: createVitePlugins(viteEnv, isBuild),// [vue()]
   }
 }
