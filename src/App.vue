@@ -1,6 +1,10 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
+  <ConfigProvider :locale="getAntdLocale">
+    <AppProvider>
+      <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+    </AppProvider>
+  </ConfigProvider>
 </template>
 
 <style>
@@ -15,6 +19,8 @@
 </style>
 
 <script setup lang="ts">
+import { ConfigProvider } from 'ant-design-vue';
+import { AppProvider } from '/@/components/Application';
 import { useLocale } from '/@/locales/useLocale';
 // support Multi-language
 const { getAntdLocale } = useLocale();

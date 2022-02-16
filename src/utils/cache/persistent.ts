@@ -1,6 +1,7 @@
 
 import type { LockInfo, UserInfo } from '/#/store';
 import type { ProjectConfig } from '/#/config';
+import { createLocalStorage, createSessionStorage } from '/@/utils/cache';
 import { Memory } from './memory';
 import {
   TOKEN_KEY,
@@ -14,7 +15,7 @@ import {
 } from '/@/enums/cacheEnum';
 
 import { DEFAULT_CACHE_TIME } from '/@/settings/encryptionSetting';
-
+import { toRaw } from 'vue';
 
 interface BasicStore {
   [TOKEN_KEY]: string | number | null | undefined;
@@ -29,13 +30,29 @@ type LocalStore = BasicStore;
 
 type LocalKeys = keyof LocalStore;
 
+const ls = createLocalStorage();
+const ss = createSessionStorage();
 
 const localMemory = new Memory(DEFAULT_CACHE_TIME);
-
+const sessionMemory = new Memory(DEFAULT_CACHE_TIME);
 
 export class Persistent {
   static getLocal<T>(key: LocalKeys) {
     return localMemory.get(key)?.value as Nullable<T>;
+  }
+
+  static setLocal(key: LocalKeys, value: LocalStore[LocalKeys], immediate = false): void {
+    localMemory.set(key, toRaw(value));
+    immediate && ls.set(APP_LOCAL_CACHE_KEY, localMemory.getCache);
+  }
+
+  static clearAll(immediate = false) {
+    sessionMemory.clear();
+    localMemory.clear();
+    if (immediate) {
+      ls.clear();
+      ss.clear();
+    }
   }
 
 }
