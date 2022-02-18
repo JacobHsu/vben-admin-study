@@ -44,22 +44,22 @@
         if (unref(isMobile)) {
           if (!unref(isSetState)) {
             isSetState.value = true;
-            const {
-              menuSetting: {
-                type: menuType,
-                mode: menuMode,
-                collapsed: menuCollapsed,
-                split: menuSplit,
-              },
-            } = appStore.getProjectConfig;
-            appStore.setProjectConfig({
-              menuSetting: {
-                type: MenuTypeEnum.SIDEBAR,
-                mode: MenuModeEnum.INLINE,
-                split: false,
-              },
-            });
-            appStore.setBeforeMiniInfo({ menuMode, menuCollapsed, menuType, menuSplit });
+            // const {
+            //   menuSetting: {
+            //     type: menuType,
+            //     mode: menuMode,
+            //     collapsed: menuCollapsed,
+            //     split: menuSplit,
+            //   },
+            // } = appStore.getProjectConfig;
+            // appStore.setProjectConfig({
+            //   menuSetting: {
+            //     type: MenuTypeEnum.SIDEBAR,
+            //     mode: MenuModeEnum.INLINE,
+            //     split: false,
+            //   },
+            // });
+            // appStore.setBeforeMiniInfo({ menuMode, menuCollapsed, menuType, menuSplit });
           }
         } else {
           if (unref(isSetState)) {

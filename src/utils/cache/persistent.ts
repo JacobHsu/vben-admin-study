@@ -1,6 +1,8 @@
 
 import type { LockInfo, UserInfo } from '/#/store';
 import type { ProjectConfig } from '/#/config';
+import type { RouteLocationNormalized } from 'vue-router';
+
 import { createLocalStorage, createSessionStorage } from '/@/utils/cache';
 import { Memory } from './memory';
 import {
@@ -23,7 +25,7 @@ interface BasicStore {
   [ROLES_KEY]: string[];
   [LOCK_INFO_KEY]: LockInfo;
   [PROJ_CFG_KEY]: ProjectConfig;
-  // [MULTIPLE_TABS_KEY]: RouteLocationNormalized[];
+  [MULTIPLE_TABS_KEY]: RouteLocationNormalized[];
 }
 
 type LocalStore = BasicStore;
@@ -43,6 +45,11 @@ export class Persistent {
 
   static setLocal(key: LocalKeys, value: LocalStore[LocalKeys], immediate = false): void {
     localMemory.set(key, toRaw(value));
+    immediate && ls.set(APP_LOCAL_CACHE_KEY, localMemory.getCache);
+  }
+
+  static removeLocal(key: LocalKeys, immediate = false): void {
+    localMemory.remove(key);
     immediate && ls.set(APP_LOCAL_CACHE_KEY, localMemory.getCache);
   }
 
