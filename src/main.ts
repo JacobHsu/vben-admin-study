@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import { initAppConfigStore } from '/@/logics/initAppConfig';
+import { router, setupRouter } from '/@/router';
 import { setupI18n } from '/@/locales/setupI18n';
 
 async function bootstrap() {
@@ -13,6 +14,9 @@ async function bootstrap() {
   // Multilingual configuration
   // Asynchronous case: language files may be obtained from the server side
   await setupI18n(app);
+
+  // Configure routing
+  setupRouter(app);
 
   app.mount('#app');
 }

@@ -2,9 +2,9 @@
   <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
   <ConfigProvider :locale="getAntdLocale">
     <AppProvider>
+        <RouterView />
     </AppProvider>
   </ConfigProvider>
-  Hello World 
   <!-- <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" /> -->
 </template>
 
