@@ -1,6 +1,8 @@
 import type { App, Plugin } from 'vue';
 import { isObject } from '/@/utils/is'
 
+export const noop = () => {};
+
 export function deepMerge<T = any>(src: any = {}, target: any = {}): T {
   let key: string;
   for (key in target) {

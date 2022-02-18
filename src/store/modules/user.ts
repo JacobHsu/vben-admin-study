@@ -6,6 +6,7 @@ import { getAuthCache, setAuthCache } from '/@/utils/auth';
 
 interface UserState {
   token?: string;
+  sessionTimeout?: boolean;
 }
 
 export const useUserStore = defineStore({
@@ -13,16 +14,24 @@ export const useUserStore = defineStore({
   state: (): UserState => ({
     // token
     token: undefined,
+    // Whether the login expired
+    sessionTimeout: false,
   }),
   getters: {
     getToken(): string {
       return this.token || getAuthCache<string>(TOKEN_KEY);
+    },
+    getSessionTimeout(): boolean {
+      return !!this.sessionTimeout;
     },
   },
   actions: {
     setToken(info: string | undefined) {
       this.token = info ? info : ''; // for null or undefined value
       setAuthCache(TOKEN_KEY, info);
+    },
+    setSessionTimeout(flag: boolean) {
+      this.sessionTimeout = flag;
     },
   },
 });

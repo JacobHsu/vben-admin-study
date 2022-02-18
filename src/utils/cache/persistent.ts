@@ -60,7 +60,7 @@ export class Persistent {
     localMemory.clear();
     immediate && ls.clear();
   }
-  
+
   static getSession<T>(key: SessionKeys) {
     return sessionMemory.get(key)?.value as Nullable<T>;
   }
@@ -68,6 +68,11 @@ export class Persistent {
   static setSession(key: SessionKeys, value: SessionStore[SessionKeys], immediate = false): void {
     sessionMemory.set(key, toRaw(value));
     immediate && ss.set(APP_SESSION_CACHE_KEY, sessionMemory.getCache);
+  }
+
+  static clearSession(immediate = false): void {
+    sessionMemory.clear();
+    immediate && ss.clear();
   }
 
   static clearAll(immediate = false) {
