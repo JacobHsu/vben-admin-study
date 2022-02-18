@@ -29,8 +29,11 @@ interface BasicStore {
 }
 
 type LocalStore = BasicStore;
+type SessionStore = BasicStore;
 
+export type BasicKeys = keyof BasicStore;
 type LocalKeys = keyof LocalStore;
+type SessionKeys = keyof SessionStore;
 
 const ls = createLocalStorage();
 const ss = createSessionStorage();
@@ -51,6 +54,20 @@ export class Persistent {
   static removeLocal(key: LocalKeys, immediate = false): void {
     localMemory.remove(key);
     immediate && ls.set(APP_LOCAL_CACHE_KEY, localMemory.getCache);
+  }
+
+  static clearLocal(immediate = false): void {
+    localMemory.clear();
+    immediate && ls.clear();
+  }
+  
+  static getSession<T>(key: SessionKeys) {
+    return sessionMemory.get(key)?.value as Nullable<T>;
+  }
+
+  static setSession(key: SessionKeys, value: SessionStore[SessionKeys], immediate = false): void {
+    sessionMemory.set(key, toRaw(value));
+    immediate && ss.set(APP_SESSION_CACHE_KEY, sessionMemory.getCache);
   }
 
   static clearAll(immediate = false) {
