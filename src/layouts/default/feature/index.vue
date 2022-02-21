@@ -1,17 +1,27 @@
 <script lang="ts">
   import { defineComponent, computed, unref } from 'vue';
   import { BackTop } from 'ant-design-vue';
+  import { useRootSetting } from '/@/hooks/setting/useRootSetting';
 
   export default defineComponent({
     name: 'LayoutFeatures',
     components: {
       BackTop,
     },
+    setup() {
+      const { getUseOpenBackTop, getShowSettingButton, getSettingButtonPosition, getFullContent } =
+        useRootSetting();
+
+      return {
+        getTarget: () => document.body,
+        getUseOpenBackTop,
+      };
+    },
   });
 </script>
 
 <template>
-  <BackTop />
+  <BackTop v-if="getUseOpenBackTop" :target="getTarget" />
 </template>
 
 <style lang="less">
