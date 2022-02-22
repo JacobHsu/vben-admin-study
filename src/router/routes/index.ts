@@ -4,6 +4,8 @@ import { PAGE_NOT_FOUND_ROUTE } from '/@/router/routes/basic';
 
 import { PageEnum } from '/@/enums/pageEnum';
 
+export const asyncRoutes = [PAGE_NOT_FOUND_ROUTE];
+
 export const RootRoute: AppRouteRecordRaw = {
   path: '/',
   name: 'Root',
