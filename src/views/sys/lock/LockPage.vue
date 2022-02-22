@@ -26,7 +26,7 @@
       v-show="showDate"
     >
       <LockOutlined />
-      <!-- <span>{{ t('sys.lock.unlock') }}</span> -->
+      <span>{{ t('sys.lock.unlock') }}</span>
     </div>
 
     <div class="flex w-screen h-screen justify-center items-center">
@@ -67,7 +67,7 @@
             >
               {{ t('common.back') }}
             </a-button>
-            <!-- <a-button
+            <a-button
               type="link"
               size="small"
               class="mt-2 mr-2 enter-x"
@@ -75,7 +75,7 @@
               @click="goLogin"
             >
               {{ t('sys.lock.backToLogin') }}
-            </a-button> -->
+            </a-button>
             <a-button class="mt-2" type="link" size="small" @click="unLock()" :loading="loading">
               {{ t('sys.lock.entry') }}
             </a-button>
@@ -125,19 +125,19 @@
   /**
    * @description: unLock
    */
-  // async function unLock() {
-  //   if (!password.value) {
-  //     return;
-  //   }
-  //   let pwd = password.value;
-  //   try {
-  //     loading.value = true;
-  //     const res = await lockStore.unLock(pwd);
-  //     errMsg.value = !res;
-  //   } finally {
-  //     loading.value = false;
-  //   }
-  // }
+  async function unLock() {
+    if (!password.value) {
+      return;
+    }
+    let pwd = password.value;
+    try {
+      loading.value = true;
+      const res = await lockStore.unLock(pwd);
+      errMsg.value = !res;
+    } finally {
+      loading.value = false;
+    }
+  }
 
   // function goLogin() {
   //   userStore.logout(true);

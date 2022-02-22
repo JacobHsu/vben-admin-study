@@ -1,9 +1,12 @@
 import type { UserInfo } from '/#/store';
+import type { ErrorMessageMode } from '/#/axios';
 import { defineStore } from 'pinia';
 import { store } from '/@/store';
 import { PageEnum } from '/@/enums/pageEnum';
 import { ROLES_KEY, TOKEN_KEY, USER_INFO_KEY } from '/@/enums/cacheEnum';
 import { getAuthCache, setAuthCache } from '/@/utils/auth';
+import { GetUserInfoModel, LoginParams } from '/@/api/sys/model/userModel';
+import { doLogout, getUserInfo, loginApi } from '/@/api/sys/user';
 import { router } from '/@/router';
 
 interface UserState {
@@ -49,6 +52,44 @@ export const useUserStore = defineStore({
     setSessionTimeout(flag: boolean) {
       this.sessionTimeout = flag;
     },
+    /**
+     * @description: login
+     */
+    async login(
+      params: LoginParams & {
+        goHome?: boolean;
+        mode?: ErrorMessageMode;
+      },
+    ): Promise<GetUserInfoModel | null> {
+      try {
+        // const { goHome = true, mode, ...loginParams } = params;
+        // const data = await loginApi(loginParams, mode);
+        // const { token } = data;
+
+        // // save token
+        // this.setToken(token);
+        // return this.afterLoginAction(goHome);
+        return null
+      } catch (error) {
+        return Promise.reject(error);
+      }
+    },
+    /**
+     * @description: logout
+     */
+     async logout(goLogin = false) {
+      if (this.getToken) {
+        try {
+          await doLogout();
+        } catch {
+          console.log('注销Token失败');
+        }
+      }
+      this.setToken(undefined);
+      this.setSessionTimeout(false);
+      this.setUserInfo(null);
+      goLogin && router.push(PageEnum.BASE_LOGIN);
+    },     
   },
 });
 
