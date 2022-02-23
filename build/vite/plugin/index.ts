@@ -4,6 +4,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 import VitePluginCertificate from 'vite-plugin-mkcert';
 import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 import { configHtmlPlugin } from './html';
+import { configPwaConfig } from './pwa';
 import { configThemePlugin } from './theme';
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
@@ -24,6 +25,13 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
 
   // vite-plugin-theme
   vitePlugins.push(configThemePlugin(isBuild));
+
+  // The following plugins only work in the production environment
+  if (isBuild) {
+    // vite-plugin-pwa
+    vitePlugins.push(configPwaConfig(viteEnv));
+  }
+
 
   return vitePlugins;
 }
