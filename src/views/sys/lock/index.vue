@@ -1,8 +1,6 @@
 <template>
   <transition name="fade-bottom" mode="out-in">
-    <!-- <LockPage v-if="getIsLock" /> -->
-    <!-- <LockPage /> -->
-    LockPage
+    <LockPage v-if="getIsLock" />
   </transition>
 </template>
 <script lang="ts" setup>

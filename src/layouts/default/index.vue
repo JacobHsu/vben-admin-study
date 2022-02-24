@@ -1,7 +1,6 @@
 <template>
   <Layout :class="prefixCls" v-bind="lockEvents">
     <LayoutFeatures />
-    Layout
   </Layout>
 </template>
 

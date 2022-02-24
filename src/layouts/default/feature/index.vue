@@ -15,6 +15,7 @@
     components: {
       BackTop,
       LayoutLockPage: createAsyncComponent(() => import('/@/views/sys/lock/index.vue')),
+      SettingDrawer: createAsyncComponent(() => import('/@/layouts/default/setting/index.vue')),
     },
     setup() {
       const { getUseOpenBackTop, getShowSettingButton, getSettingButtonPosition, getFullContent } =
@@ -51,6 +52,8 @@
 <template>
   <LayoutLockPage />
   <BackTop v-if="getUseOpenBackTop" :target="getTarget" />
+  <SettingDrawer v-if="getIsFixedSettingDrawer" :class="prefixCls" />
+  feature SettingDrawer
 </template>
 
 <style lang="less">
