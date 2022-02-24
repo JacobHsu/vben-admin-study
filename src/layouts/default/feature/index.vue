@@ -9,13 +9,15 @@
 
   import { SettingButtonPositionEnum } from '/@/enums/appEnum';
   import { createAsyncComponent } from '/@/utils/factory/createAsyncComponent';
-  
+  import SessionTimeoutLogin from '/@/views/sys/login/SessionTimeoutLogin.vue';
+
   export default defineComponent({
     name: 'LayoutFeatures',
     components: {
       BackTop,
       LayoutLockPage: createAsyncComponent(() => import('/@/views/sys/lock/index.vue')),
       SettingDrawer: createAsyncComponent(() => import('/@/layouts/default/setting/index.vue')),
+      SessionTimeoutLogin,
     },
     setup() {
       const { getUseOpenBackTop, getShowSettingButton, getSettingButtonPosition, getFullContent } =
@@ -53,7 +55,7 @@
   <LayoutLockPage />
   <BackTop v-if="getUseOpenBackTop" :target="getTarget" />
   <SettingDrawer v-if="getIsFixedSettingDrawer" :class="prefixCls" />
-  feature SettingDrawer
+  <SessionTimeoutLogin />
 </template>
 
 <style lang="less">
