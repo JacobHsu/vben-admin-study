@@ -1,5 +1,10 @@
 <template>
   <div :class="prefixCls" class="relative w-full h-full px-4">
+    <AppLocalePicker
+      class="absolute text-white top-4 right-4 enter-x xl:text-gray-600"
+      :showText="false"
+      v-if="!sessionTimeout && showLocale"
+    />
     SessionTimeoutLogin > Login.vue
 
     <span class="-enter-x xl:hidden">
@@ -9,6 +14,7 @@
 </template>
 <script lang="ts" setup>
   import { AppLogo } from '/@/components/Application';
+  import { AppLocalePicker } from '/@/components/Application';
   import { useGlobSetting } from '/@/hooks/setting';
   import { useDesign } from '/@/hooks/web/useDesign';
   const globSetting = useGlobSetting();
