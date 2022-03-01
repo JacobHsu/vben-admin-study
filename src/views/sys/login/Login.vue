@@ -3,7 +3,7 @@
     <AppLocalePicker
       class="absolute text-white top-4 right-4 enter-x xl:text-gray-600"
       :showText="false"
-      v-if="!sessionTimeout && showLocale"
+      v-if="!sessionTimeout"
     />
     SessionTimeoutLogin > Login.vue
 
@@ -17,6 +17,14 @@
   import { AppLocalePicker } from '/@/components/Application';
   import { useGlobSetting } from '/@/hooks/setting';
   import { useDesign } from '/@/hooks/web/useDesign';
+
+  defineProps({
+    sessionTimeout: {
+      type: Boolean,
+    },
+  });
+
+
   const globSetting = useGlobSetting();
   const { prefixCls } = useDesign('login');
 </script>
