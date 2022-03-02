@@ -155,15 +155,15 @@ export function off(
 }
 
 /* istanbul ignore next */
-export function once(el: HTMLElement, event: string, fn: EventListener): void {
-  const listener = function (this: any, ...args: unknown[]) {
-    if (fn) {
-      fn.apply(this, args);
-    }
-    off(el, event, listener);
-  };
-  on(el, event, listener);
-}
+// export function once(el: HTMLElement, event: string, fn: EventListener): void {
+//   const listener = function (this: any, ...args: unknown[]) {
+//     if (fn) {
+//       fn.apply(this, args);
+//     }
+//     off(el, event, listener);
+//   };
+//   on(el, event, listener);
+// }
 
 export function useRafThrottle<T extends FunctionArgs>(fn: T): T {
   let locked = false;
