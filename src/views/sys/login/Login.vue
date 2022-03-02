@@ -3,8 +3,10 @@
     <AppLocalePicker
       class="absolute text-white top-4 right-4 enter-x xl:text-gray-600"
       :showText="false"
-      v-if="!sessionTimeout"
+      v-if="!sessionTimeout && showLocale"
     />
+
+    <AppDarkModeToggle class="absolute top-3 right-7 enter-x" v-if="!sessionTimeout" />
     SessionTimeoutLogin > Login.vue
 
     <span class="-enter-x xl:hidden">
@@ -14,9 +16,11 @@
 </template>
 <script lang="ts" setup>
   import { AppLogo } from '/@/components/Application';
-  import { AppLocalePicker } from '/@/components/Application';
+  import { AppLocalePicker, AppDarkModeToggle } from '/@/components/Application';
   import { useGlobSetting } from '/@/hooks/setting';
+  import { useI18n } from '/@/hooks/web/useI18n';
   import { useDesign } from '/@/hooks/web/useDesign';
+  import { useLocaleStore } from '/@/store/modules/locale';
 
   defineProps({
     sessionTimeout: {
@@ -27,6 +31,10 @@
 
   const globSetting = useGlobSetting();
   const { prefixCls } = useDesign('login');
+  const { t } = useI18n();
+  const localeStore = useLocaleStore();
+  const showLocale = localeStore.getShowPicker;
+
 </script>
 
 <style lang="less">
