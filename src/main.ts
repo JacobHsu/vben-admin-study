@@ -1,6 +1,7 @@
 import 'virtual:windi-base.css';
 import 'virtual:windi-components.css';
 import 'virtual:windi-utilities.css';
+import '/@/design/index.less';
 import { createApp } from 'vue'
 import App from './App.vue'
 import { initAppConfigStore } from '/@/logics/initAppConfig';
