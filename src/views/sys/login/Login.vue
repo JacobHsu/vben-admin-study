@@ -12,9 +12,32 @@
     <span class="-enter-x xl:hidden">
       <AppLogo :alwaysShowTitle="true" />
     </span>
+
+    <div class="container relative h-full py-2 mx-auto sm:px-10">
+      <div class="flex h-full">
+        <div class="hidden min-h-full pl-4 mr-4 xl:flex xl:flex-col xl:w-6/12">
+          <AppLogo class="-enter-x" />
+          <div class="my-auto">
+            <img
+              :alt="title"
+              src="../../../assets/svg/login-box-bg.svg"
+              class="w-1/2 -mt-16 -enter-x"
+            />
+            <div class="mt-10 font-medium text-white -enter-x">
+              <span class="inline-block mt-4 text-3xl"> {{ t('sys.login.signInTitle') }}</span>
+            </div>
+            <div class="mt-5 font-normal text-white text-md dark:text-gray-500 -enter-x">
+              {{ t('sys.login.signInDesc') }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 <script lang="ts" setup>
+  import { computed } from 'vue';
   import { AppLogo } from '/@/components/Application';
   import { AppLocalePicker, AppDarkModeToggle } from '/@/components/Application';
   import { useGlobSetting } from '/@/hooks/setting';
@@ -34,7 +57,7 @@
   const { t } = useI18n();
   const localeStore = useLocaleStore();
   const showLocale = localeStore.getShowPicker;
-
+  const title = computed(() => globSetting?.title ?? '');
 </script>
 
 <style lang="less">

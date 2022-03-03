@@ -5,9 +5,14 @@ import VitePluginCertificate from 'vite-plugin-mkcert';
 import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 import { configHtmlPlugin } from './html';
 import { configPwaConfig } from './pwa';
+import { configImageminPlugin } from './imagemin';
 import { configThemePlugin } from './theme';
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
+  const {
+    VITE_USE_IMAGEMIN,
+  } = viteEnv;
+
   const vitePlugins: (Plugin | Plugin[])[] = [
     // have to
     vue(),
@@ -28,6 +33,9 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
 
   // The following plugins only work in the production environment
   if (isBuild) {
+    // vite-plugin-imagemin
+    VITE_USE_IMAGEMIN && vitePlugins.push(configImageminPlugin());
+
     // vite-plugin-pwa
     vitePlugins.push(configPwaConfig(viteEnv));
   }
