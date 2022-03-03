@@ -45,6 +45,11 @@
     "@types/lodash" "^4.14.165"
     lodash "^4.17.15"
 
+"@antfu/utils@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@antfu/utils/-/utils-0.5.0.tgz#b3169429997cb87850e543cb74660f9e2fed7efd"
+  integrity sha512-MrAQ/MrPSxbh1bBrmwJjORfJymw4IqSHFBXqvxaga3ZdDM+/zokYF8DjyJpSjY2QmpmgQrajDUBJOWrYeARfzA==
+
 "@apideck/better-ajv-errors@^0.3.1":
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@apideck/better-ajv-errors/-/better-ajv-errors-0.3.3.tgz#ab0b1e981e1749bf59736cf7ebe25cfc9f949c15"
@@ -1892,6 +1897,28 @@
   integrity sha512-ThDld4Mx501tahRuHV6qJGkwCr17GknZrOzlD02Na9qJcH7Pq0quNTLx5cNDou7b1CKNvE3BXi2w/hz9KuPNTQ==
   dependencies:
     vue-demi "*"
+
+"@windicss/config@1.8.2":
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/@windicss/config/-/config-1.8.2.tgz#52f8720a7987184a79d610a151f12a6325c3677e"
+  integrity sha512-dGXkzcH1Bnm9716/pE63YSewLQIZXGWerHEotUKf2EMlz/JqsI9Z3yBy/lXVL9HsEoTNpyvMPLk75oquH0vXGg==
+  dependencies:
+    debug "^4.3.3"
+    jiti "^1.13.0"
+    windicss "^3.5.1"
+
+"@windicss/plugin-utils@1.8.2":
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/@windicss/plugin-utils/-/plugin-utils-1.8.2.tgz#f7c982b01d0ea96cf86585115743c770c6b2cd2e"
+  integrity sha512-UlinWxojyGxWV18AyQ1ISeGvtpbw4ITQpcRe0v4PyuJZHwnrrHmxp8o/pg10oEcDKnsTIbjGeZfW5DC+mkjYYQ==
+  dependencies:
+    "@antfu/utils" "^0.5.0"
+    "@windicss/config" "1.8.2"
+    debug "^4.3.3"
+    fast-glob "^3.2.11"
+    magic-string "^0.25.7"
+    micromatch "^4.0.4"
+    windicss "^3.5.1"
 
 acorn-jsx@^5.3.1:
   version "5.3.2"
@@ -4663,6 +4690,11 @@ jest-worker@^26.2.1:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
+jiti@^1.13.0:
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/jiti/-/jiti-1.13.0.tgz#3cdfc4e651ca0cca4c62ed5e47747b5841d41a8e"
+  integrity sha512-/n9mNxZj/HDSrincJ6RP+L+yXbpnB8FybySBa+IjIaoH9FIxBbrbRT5XUbe8R7zuVM2AQqNMNDDqz0bzx3znOQ==
+
 jpegtran-bin@^5.0.0:
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/jpegtran-bin/-/jpegtran-bin-5.0.2.tgz#5870fd7e68317bd203a1c94572bd06ae7732cac3"
@@ -4797,6 +4829,11 @@ known-css-properties@^0.24.0:
   version "0.24.0"
   resolved "https://registry.yarnpkg.com/known-css-properties/-/known-css-properties-0.24.0.tgz#19aefd85003ae5698a5560d2b55135bf5432155c"
   integrity sha512-RTSoaUAfLvpR357vWzAz/50Q/BmHfmE6ETSWfutT0AJiw10e6CmcdYRQJlLRd95B53D0Y2aD1jSxD3V3ySF+PA==
+
+kolorist@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/kolorist/-/kolorist-1.5.1.tgz#c3d66dc4fabde4f6b7faa6efda84c00491f9e52b"
+  integrity sha512-lxpCM3HTvquGxKGzHeknB/sUjuVoUElLlfYnXZT73K8geR9jQbroGlSCFBax9/0mpGoD3kzcMLnOlGQPJJNyqQ==
 
 less@^4.1.2:
   version "4.1.2"
@@ -6972,6 +7009,16 @@ vite-plugin-vue-setup-extend@^0.4.0:
     "@vue/compiler-sfc" "^3.2.29"
     magic-string "^0.25.7"
 
+vite-plugin-windicss@^1.8.2:
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/vite-plugin-windicss/-/vite-plugin-windicss-1.8.2.tgz#0d07964018d6d0f97bb2a02a452b6bc1e66ba968"
+  integrity sha512-tO9bCoqIW945ehwMr9D41YPods8b7HXtVtYVPx62dxadxlbcoD7PQ/8wSvLEiIkMMfuDG5WQ6LZaUdmfALC/vQ==
+  dependencies:
+    "@windicss/plugin-utils" "1.8.2"
+    debug "^4.3.3"
+    kolorist "^1.5.1"
+    windicss "^3.5.1"
+
 vite@^2.7.2:
   version "2.7.13"
   resolved "https://registry.yarnpkg.com/vite/-/vite-2.7.13.tgz#99b56e27dfb1e4399e407cf94648f5c7fb9d77f5"
@@ -7237,6 +7284,11 @@ which@^2.0.1:
   integrity sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==
   dependencies:
     isexe "^2.0.0"
+
+windicss@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/windicss/-/windicss-3.5.1.tgz#5e279c21179dbc122122d0b3a3a2651511249241"
+  integrity sha512-E1hYZATcZFci/XhGS0sJAMRxULjnK+glNukE78Ku7xeb3jxgMY55fFOdIrav+GjQCsgR+IZxPq9/DwmO6eyc4Q==
 
 with@^7.0.0:
   version "7.0.2"
