@@ -15,6 +15,42 @@
         class="fix-auto-fill"
       />
     </FormItem>
+    <FormItem name="password" class="enter-x">
+      <InputPassword
+        size="large"
+        visibilityToggle
+        v-model:value="formData.password"
+        :placeholder="t('sys.login.password')"
+      />
+    </FormItem>
+
+    <ARow class="enter-x">
+      <ACol :span="12">
+        <FormItem>
+          <!-- No logic, you need to deal with it yourself -->
+          <Checkbox v-model:checked="rememberMe" size="small">
+            {{ t('sys.login.rememberMe') }}
+          </Checkbox>
+        </FormItem>
+      </ACol>
+      <ACol :span="12">
+        <FormItem :style="{ 'text-align': 'right' }">
+          <!-- No logic, you need to deal with it yourself -->
+          <Button type="link" size="small" @click="setLoginState(LoginStateEnum.RESET_PASSWORD)">
+            {{ t('sys.login.forgetPassword') }}
+          </Button>
+        </FormItem>
+      </ACol>
+    </ARow>
+
+    <FormItem class="enter-x">
+      <Button type="primary" size="large" block :loading="loading">
+        {{ t('sys.login.loginButton') }}
+      </Button>
+      <!-- <Button size="large" class="mt-4 enter-x" block @click="handleRegister">
+        {{ t('sys.login.registerButton') }}
+      </Button> -->
+    </FormItem>
   </Form>
 </template>
 <script lang="ts" setup>
@@ -30,7 +66,12 @@ const FormItem = Form.Item;
 const InputPassword = Input.Password;
 const { t } = useI18n();
 const { setLoginState, getLoginState } = useLoginState();
+const { getFormRules } = useFormRules();
 const getShow = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN);
+
+const formRef = ref();
+const loading = ref(false);
+const rememberMe = ref(false);
 
 const formData = reactive({
   account: 'vben',
