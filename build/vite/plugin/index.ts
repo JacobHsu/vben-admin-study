@@ -6,6 +6,7 @@ import VitePluginCertificate from 'vite-plugin-mkcert';
 import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 import { configHtmlPlugin } from './html';
 import { configPwaConfig } from './pwa';
+import { configStyleImportPlugin } from './styleImport';
 import { configImageminPlugin } from './imagemin';
 import { configThemePlugin } from './theme';
 
@@ -31,6 +32,9 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
 
   // vite-plugin-html
   vitePlugins.push(configHtmlPlugin(viteEnv, isBuild));
+
+  // vite-plugin-style-import
+  vitePlugins.push(configStyleImportPlugin(isBuild));
 
   // vite-plugin-theme
   vitePlugins.push(configThemePlugin(isBuild));
