@@ -6,12 +6,14 @@ import VitePluginCertificate from 'vite-plugin-mkcert';
 import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 import { configHtmlPlugin } from './html';
 import { configPwaConfig } from './pwa';
+import { configMockPlugin } from './mock';
 import { configStyleImportPlugin } from './styleImport';
 import { configImageminPlugin } from './imagemin';
 import { configThemePlugin } from './theme';
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   const {
+    VITE_USE_MOCK,
     VITE_USE_IMAGEMIN,
   } = viteEnv;
 
@@ -32,6 +34,9 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
 
   // vite-plugin-html
   vitePlugins.push(configHtmlPlugin(viteEnv, isBuild));
+
+  // vite-plugin-mock
+  VITE_USE_MOCK && vitePlugins.push(configMockPlugin(isBuild));
 
   // vite-plugin-style-import
   vitePlugins.push(configStyleImportPlugin(isBuild));
