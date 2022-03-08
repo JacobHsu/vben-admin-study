@@ -6,6 +6,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import { initAppConfigStore } from '/@/logics/initAppConfig';
 import { router, setupRouter } from '/@/router';
+import { setupRouterGuard } from '/@/router/guard';
 import { setupStore } from '/@/store';
 import { setupI18n } from '/@/locales/setupI18n';
 
@@ -25,6 +26,9 @@ async function bootstrap() {
 
   // Configure routing
   setupRouter(app);
+
+  // router-guard
+  setupRouterGuard(router);
 
   app.mount('#app');
 }
