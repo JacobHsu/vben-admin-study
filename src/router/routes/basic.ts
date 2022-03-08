@@ -3,7 +3,7 @@ import { t } from '/@/hooks/web/useI18n';
 import {
   // REDIRECT_NAME,
   LAYOUT,
-  // EXCEPTION_COMPONENT,
+  EXCEPTION_COMPONENT,
   PAGE_NOT_FOUND_NAME,
 } from '/@/router/constant';
 
@@ -17,18 +17,18 @@ export const PAGE_NOT_FOUND_ROUTE: AppRouteRecordRaw = {
     hideBreadcrumb: true,
     hideMenu: true,
   },
-  // children: [
-  //   {
-  //     path: '/:path(.*)*',
-  //     name: PAGE_NOT_FOUND_NAME,
-  //     // component: EXCEPTION_COMPONENT,
-  //     meta: {
-  //       title: 'ErrorPage',
-  //       hideBreadcrumb: true,
-  //       hideMenu: true,
-  //     },
-  //   },
-  // ],
+  children: [
+    {
+      path: '/:path(.*)*',
+      name: PAGE_NOT_FOUND_NAME,
+      component: EXCEPTION_COMPONENT,
+      meta: {
+        title: 'ErrorPage',
+        hideBreadcrumb: true,
+        hideMenu: true,
+      },
+    },
+  ],
 };
 
 // export const ERROR_LOG_ROUTE: AppRouteRecordRaw = {

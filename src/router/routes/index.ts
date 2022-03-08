@@ -25,19 +25,19 @@ export const LoginRoute: AppRouteRecordRaw = {
   },
 };
 
-export const DashboardRoute: AppRouteRecordRaw = {
-  path: '/dashboard',
-  name: 'Dashboard',
-  component: () => import('/@/views/dashboard/analysis/index.vue'),
-  meta: {
-    title: 'Dashboard',
-  },
-};
+// export const DashboardRoute: AppRouteRecordRaw = {
+//   path: '/dashboard',
+//   name: 'Dashboard',
+//   component: () => import('/@/views/dashboard/analysis/index.vue'),
+//   meta: {
+//     title: 'Dashboard',
+//   },
+// };
 
 
 // Basic routing without permission
 export const basicRoutes = [
-  DashboardRoute,
+  // DashboardRoute,
   LoginRoute,
   RootRoute,
   // ...mainOutRoutes,
