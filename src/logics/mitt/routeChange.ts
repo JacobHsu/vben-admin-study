@@ -19,7 +19,7 @@
  }
  
  export function listenerRouteChange(
-   callback: (route: RouteLocationNormalized) => void,
+   callback: (route?: RouteLocationNormalized) => void,
    immediate = true,
  ) {
    emitter.on(key, callback);
