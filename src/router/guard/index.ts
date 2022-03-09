@@ -3,8 +3,11 @@ import { useAppStoreWithOut } from '/@/store/modules/app';
 import { useUserStoreWithOut } from '/@/store/modules/user';
 import { useTransitionSetting } from '/@/hooks/setting/useTransitionSetting';
 import { AxiosCanceler } from '/@/utils/http/axios/axiosCancel';
+import { Modal, notification } from 'ant-design-vue';
+import { warn } from '/@/utils/log';
 import { setRouteChange } from '/@/logics/mitt/routeChange';
 import { unref } from 'vue';
+import nProgress from 'nprogress';
 import projectSetting from '/@/settings/projectSetting';
 
 // Don't change the order of creation
@@ -13,6 +16,8 @@ export function setupRouterGuard(router: Router) {
   createPageLoadingGuard(router);
   createHttpGuard(router);
   createScrollGuard(router);
+  createMessageGuard(router);
+  createProgressGuard(router);
 }
 
 /**
@@ -95,6 +100,42 @@ function createScrollGuard(router: Router) {
   router.afterEach(async (to) => {
     // scroll top
     isHash((to as RouteLocationNormalized & { href: string })?.href) && body.scrollTo(0, 0);
+    return true;
+  });
+}
+
+/**
+ * Used to close the message instance when the route is switched
+ * @param router
+ */
+ export function createMessageGuard(router: Router) {
+  const { closeMessageOnSwitch } = projectSetting;
+
+  router.beforeEach(async () => {
+    try {
+      if (closeMessageOnSwitch) {
+        Modal.destroyAll();
+        notification.destroy();
+      }
+    } catch (error) {
+      warn('message guard error:' + error);
+    }
+    return true;
+  });
+}
+
+export function createProgressGuard(router: Router) {
+  const { getOpenNProgress } = useTransitionSetting();
+  router.beforeEach(async (to) => {
+    if (to.meta.loaded) {
+      return true;
+    }
+    unref(getOpenNProgress) && nProgress.start();
+    return true;
+  });
+
+  router.afterEach(async () => {
+    unref(getOpenNProgress) && nProgress.done();
     return true;
   });
 }
