@@ -6,6 +6,7 @@ import { AxiosCanceler } from '/@/utils/http/axios/axiosCancel';
 import { Modal, notification } from 'ant-design-vue';
 import { warn } from '/@/utils/log';
 import { setRouteChange } from '/@/logics/mitt/routeChange';
+import { createPermissionGuard } from './permissionGuard';
 import { unref } from 'vue';
 import nProgress from 'nprogress';
 import projectSetting from '/@/settings/projectSetting';
@@ -18,6 +19,7 @@ export function setupRouterGuard(router: Router) {
   createScrollGuard(router);
   createMessageGuard(router);
   createProgressGuard(router);
+  createPermissionGuard(router);
 }
 
 /**

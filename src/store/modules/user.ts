@@ -9,7 +9,7 @@ import { getAuthCache, setAuthCache } from '/@/utils/auth';
 import { GetUserInfoModel, LoginParams } from '/@/api/sys/model/userModel';
 import { doLogout, getUserInfo, loginApi } from '/@/api/sys/user';
 import { router } from '/@/router';
-// import { usePermissionStore } from '/@/store/modules/permission';
+import { usePermissionStore } from '/@/store/modules/permission';
 import { RouteRecordRaw } from 'vue-router';
 import { PAGE_NOT_FOUND_ROUTE } from '/@/router/routes/basic';
 import { isArray } from '/@/utils/is';
@@ -48,6 +48,9 @@ export const useUserStore = defineStore({
     },
     getSessionTimeout(): boolean {
       return !!this.sessionTimeout;
+    },
+    getLastUpdateTime(): number {
+      return this.lastUpdateTime;
     },
   },
   actions: {
@@ -97,6 +100,7 @@ export const useUserStore = defineStore({
       if (sessionTimeout) {
         this.setSessionTimeout(false);
       } else {
+        console.log(userInfo?.homePath)
         // const permissionStore = usePermissionStore();
         // if (!permissionStore.isDynamicAddedRoute) {
         //   const routes = await permissionStore.buildRoutesAction();
