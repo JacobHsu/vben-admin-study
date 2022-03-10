@@ -147,7 +147,7 @@ export const usePermissionStore = defineStore({
         }
         return;
       };
-
+console.log(9999,permissionMode)
       switch (permissionMode) {
         case PermissionModeEnum.ROLE:
           routes = filter(asyncRoutes, routeFilter);

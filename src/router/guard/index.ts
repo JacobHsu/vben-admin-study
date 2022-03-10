@@ -8,8 +8,10 @@ import { warn } from '/@/utils/log';
 import { setRouteChange } from '/@/logics/mitt/routeChange';
 import { createPermissionGuard } from './permissionGuard';
 import { unref } from 'vue';
+import { createStateGuard } from './stateGuard';
 import nProgress from 'nprogress';
 import projectSetting from '/@/settings/projectSetting';
+import { createParamMenuGuard } from './paramMenuGuard';
 
 // Don't change the order of creation
 export function setupRouterGuard(router: Router) {
@@ -20,6 +22,8 @@ export function setupRouterGuard(router: Router) {
   createMessageGuard(router);
   createProgressGuard(router);
   createPermissionGuard(router);
+  createParamMenuGuard(router); // must after createPermissionGuard (menu has been built.)
+  createStateGuard(router);
 }
 
 /**

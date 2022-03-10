@@ -70,6 +70,12 @@ export const useUserStore = defineStore({
     setSessionTimeout(flag: boolean) {
       this.sessionTimeout = flag;
     },
+    resetState() {
+      this.userInfo = null;
+      this.token = '';
+      this.roleList = [];
+      this.sessionTimeout = false;
+    },
     /**
      * @description: login
      */
@@ -100,17 +106,17 @@ export const useUserStore = defineStore({
       if (sessionTimeout) {
         this.setSessionTimeout(false);
       } else {
-        console.log(userInfo?.homePath)
-        // const permissionStore = usePermissionStore();
-        // if (!permissionStore.isDynamicAddedRoute) {
-        //   const routes = await permissionStore.buildRoutesAction();
-        //   routes.forEach((route) => {
-        //     router.addRoute(route as unknown as RouteRecordRaw);
-        //   });
-        //   router.addRoute(PAGE_NOT_FOUND_ROUTE as unknown as RouteRecordRaw);
-        //   permissionStore.setDynamicAddedRoute(true);
-        // }
-        // goHome && (await router.replace(userInfo?.homePath || PageEnum.BASE_HOME));
+        const permissionStore = usePermissionStore();
+        if (!permissionStore.isDynamicAddedRoute) {
+          const routes = await permissionStore.buildRoutesAction();
+          routes.forEach((route) => {
+            router.addRoute(route as unknown as RouteRecordRaw);
+          });
+          router.addRoute(PAGE_NOT_FOUND_ROUTE as unknown as RouteRecordRaw);
+          permissionStore.setDynamicAddedRoute(true);
+        }
+        console.log(5555, userInfo?.homePath, permissionStore.isDynamicAddedRoute)
+        goHome && (await router.replace(userInfo?.homePath || PageEnum.BASE_HOME));
       }
       return userInfo;
     },
