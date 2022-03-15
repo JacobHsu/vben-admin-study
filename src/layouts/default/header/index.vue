@@ -19,7 +19,10 @@
       <LayoutBreadcrumb v-if="getShowContent && getShowBread" :theme="getHeaderTheme" />
     </div>
     <!-- left end -->
-
+    <!-- action  -->
+    <div :class="`${prefixCls}-action`">
+      <SettingDrawer v-if="getShowSetting" :class="`${prefixCls}-action__item`" />
+    </div>
   </Header>
 </template>
 <script lang="ts">
@@ -46,7 +49,7 @@
   import { useAppInject } from '/@/hooks/web/useAppInject';
   import { useDesign } from '/@/hooks/web/useDesign';
 
-  // import { createAsyncComponent } from '/@/utils/factory/createAsyncComponent';
+  import { createAsyncComponent } from '/@/utils/factory/createAsyncComponent';
   import { useLocale } from '/@/locales/useLocale';
 
   export default defineComponent({
@@ -56,6 +59,9 @@
       AppLogo,
       LayoutTrigger,
       LayoutBreadcrumb,
+      SettingDrawer: createAsyncComponent(() => import('/@/layouts/default/setting/index.vue'), {
+        loading: true,
+      }),
     },
     props: {
       fixed: propTypes.bool,
