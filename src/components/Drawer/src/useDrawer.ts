@@ -65,36 +65,36 @@ export function useDrawer(): UseDrawerReturnType {
   };
 
   const methods: ReturnMethods = {
-    // setDrawerProps: (props: Partial<DrawerProps>): void => {
-    //   getInstance()?.setDrawerProps(props);
-    // },
+    setDrawerProps: (props: Partial<DrawerProps>): void => {
+      getInstance()?.setDrawerProps(props);
+    },
 
     getVisible: computed((): boolean => {
       return visibleData[~~unref(uid)];
     }),
 
-    // openDrawer: <T = any>(visible = true, data?: T, openOnSet = true): void => {
-    //   getInstance()?.setDrawerProps({
-    //     visible: visible,
-    //   });
-    //   if (!data) return;
+    openDrawer: <T = any>(visible = true, data?: T, openOnSet = true): void => {
+      getInstance()?.setDrawerProps({
+        visible: visible,
+      });
+      if (!data) return;
 
-    //   if (openOnSet) {
-    //     dataTransferRef[unref(uid)] = null;
-    //     dataTransferRef[unref(uid)] = toRaw(data);
-    //     return;
-    //   }
-    //   const equal = isEqual(toRaw(dataTransferRef[unref(uid)]), toRaw(data));
-    //   if (!equal) {
-    //     dataTransferRef[unref(uid)] = toRaw(data);
-    //   }
-    // },
-    // closeDrawer: () => {
-    //   getInstance()?.setDrawerProps({ visible: false });
-    // },
+      if (openOnSet) {
+        dataTransferRef[unref(uid)] = null;
+        dataTransferRef[unref(uid)] = toRaw(data);
+        return;
+      }
+      const equal = isEqual(toRaw(dataTransferRef[unref(uid)]), toRaw(data));
+      if (!equal) {
+        dataTransferRef[unref(uid)] = toRaw(data);
+      }
+    },
+    closeDrawer: () => {
+      getInstance()?.setDrawerProps({ visible: false });
+    },
   };
 
-  return [methods]; // register,
+  return [register, methods];
 }
 
 // export const useDrawerInner = (callbackFn?: Fn): UseDrawerInnerReturnType => {

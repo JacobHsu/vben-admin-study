@@ -3,13 +3,13 @@ import type { CSSProperties, VNodeChild, ComputedRef } from 'vue';
 import type { ScrollContainerOptions } from '/@/components/Container/index';
 
 export interface DrawerInstance {
-  // setDrawerProps: (props: Partial<DrawerProps> | boolean) => void;
+  setDrawerProps: (props: Partial<DrawerProps> | boolean) => void;
   emitVisible?: (visible: boolean, uid: number) => void;
 }
 
 export interface ReturnMethods extends DrawerInstance {
-  // openDrawer: <T = any>(visible?: boolean, data?: T, openOnSet?: boolean) => void;
-  // closeDrawer: () => void;
+  openDrawer: <T = any>(visible?: boolean, data?: T, openOnSet?: boolean) => void;
+  closeDrawer: () => void;
   getVisible?: ComputedRef<boolean>;
 }
 
@@ -22,7 +22,7 @@ export interface ReturnInnerMethods extends DrawerInstance {
   getVisible?: ComputedRef<boolean>;
 }
 
-export type UseDrawerReturnType = [ReturnMethods]; //  RegisterFn,
+export type UseDrawerReturnType = [RegisterFn, ReturnMethods];
 
 export type UseDrawerInnerReturnType = [RegisterFn, ReturnInnerMethods];
 
