@@ -5,6 +5,13 @@ import { isObject } from '/@/utils/is'
 export const noop = () => {};
 
 /**
+ * @description:  Set ui mount node
+ */
+ export function getPopupContainer(node?: HTMLElement): HTMLElement {
+  return (node?.parentNode as HTMLElement) ?? document.body;
+}
+
+/**
  * Add the object as a parameter to the URL
  * @param baseUrl url
  * @param obj

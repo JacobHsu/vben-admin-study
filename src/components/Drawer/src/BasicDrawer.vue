@@ -1,7 +1,7 @@
 <template>
   <Drawer :class="prefixCls" @close="onClose" v-bind="getBindValues">
     <template #title v-if="!$slots.title">
-      <!-- <DrawerHeader
+      <DrawerHeader
         :title="getMergeProps.title"
         :isDetail="isDetail"
         :showDetailBack="showDetailBack"
@@ -10,7 +10,7 @@
         <template #titleToolbar>
           <slot name="titleToolbar"></slot>
         </template>
-      </DrawerHeader> -->
+      </DrawerHeader>
     </template>
     <template v-else #title>
       <slot name="title"></slot>
@@ -48,14 +48,14 @@
   import { isFunction, isNumber } from '/@/utils/is';
   import { deepMerge } from '/@/utils';
   // import DrawerFooter from './components/DrawerFooter.vue';
-  // import DrawerHeader from './components/DrawerHeader.vue';
+  import DrawerHeader from './components/DrawerHeader.vue';
   // import { ScrollContainer } from '/@/components/Container';
   import { basicProps } from './props';
   import { useDesign } from '/@/hooks/web/useDesign';
   import { useAttrs } from '/@/hooks/core/useAttrs';
 
   export default defineComponent({
-    components: { Drawer }, // ScrollContainer, DrawerFooter, DrawerHeader
+    components: { Drawer, DrawerHeader }, // ScrollContainer, DrawerFooter
     inheritAttrs: false,
     props: basicProps,
     emits: ['visible-change', 'ok', 'close', 'register'],
