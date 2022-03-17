@@ -23,11 +23,11 @@
     >
       <slot></slot>
     </ScrollContainer> -->
-    <!-- <DrawerFooter v-bind="getProps" @close="onClose" @ok="handleOk" :height="getFooterHeight">
+    <DrawerFooter v-bind="getProps" @close="onClose" @ok="handleOk" :height="getFooterHeight">
       <template #[item]="data" v-for="item in Object.keys($slots)">
         <slot :name="item" v-bind="data || {}"></slot>
       </template>
-    </DrawerFooter> -->
+    </DrawerFooter>
   </Drawer>
 </template>
 <script lang="ts">
@@ -47,7 +47,7 @@
   import { useI18n } from '/@/hooks/web/useI18n';
   import { isFunction, isNumber } from '/@/utils/is';
   import { deepMerge } from '/@/utils';
-  // import DrawerFooter from './components/DrawerFooter.vue';
+  import DrawerFooter from './components/DrawerFooter.vue';
   import DrawerHeader from './components/DrawerHeader.vue';
   // import { ScrollContainer } from '/@/components/Container';
   import { basicProps } from './props';
@@ -55,7 +55,7 @@
   import { useAttrs } from '/@/hooks/core/useAttrs';
 
   export default defineComponent({
-    components: { Drawer, DrawerHeader }, // ScrollContainer, DrawerFooter
+    components: { Drawer, DrawerFooter, DrawerHeader }, // ScrollContainer, 
     inheritAttrs: false,
     props: basicProps,
     emits: ['visible-change', 'ok', 'close', 'register'],
