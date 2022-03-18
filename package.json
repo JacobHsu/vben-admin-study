@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@ant-design/colors": "^6.0.0",
+    "@iconify/iconify": "^2.1.2",
     "@vueuse/core": "^7.6.2",
     "ant-design-vue": "3.0.0-beta.8",
     "crypto-js": "^4.1.1",
@@ -60,6 +61,7 @@
     "vite-plugin-mock": "^2.9.6",
     "vite-plugin-pwa": "^0.11.13",
     "vite-plugin-style-import": "^1.4.1",
+    "vite-plugin-svg-icons": "^1.1.0",
     "vite-plugin-theme": "^0.8.1",
     "vite-plugin-vue-setup-extend": "^0.4.0",
     "vite-plugin-windicss": "^1.8.2",

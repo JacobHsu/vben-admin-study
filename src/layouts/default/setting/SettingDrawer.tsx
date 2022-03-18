@@ -6,6 +6,8 @@ import {
   ThemeColorPicker,
 } from './components';
 
+import { AppDarkModeToggle } from '/@/components/Application';
+
 import { useRootSetting } from '/@/hooks/setting/useRootSetting';
 import { useI18n } from '/@/hooks/web/useI18n';
 
@@ -45,6 +47,7 @@ export default defineComponent({
         class="setting-drawer"
       >
         {unref(getShowDarkModeToggle) && <Divider>{() => t('layout.setting.darkMode')}</Divider>}
+        {unref(getShowDarkModeToggle) && <AppDarkModeToggle class="mx-auto" />}
         <Divider>{() => t('layout.setting.sysTheme')}</Divider>
         {renderMainTheme()}
         <Divider />
