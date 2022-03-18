@@ -16,18 +16,13 @@
       <slot name="title"></slot>
     </template>
 
-    <!-- <ScrollContainer
+    <ScrollContainer
       :style="getScrollContentStyle"
-      v-loading="getLoading"
+      :loading="getLoading"
       :loading-tip="loadingText || t('common.loadingText')"
     >
       <slot></slot>
-    </ScrollContainer> -->
-    <ScrollContainer >
-      <slot></slot>
     </ScrollContainer>
-
-
     <DrawerFooter v-bind="getProps" @close="onClose" @ok="handleOk" :height="getFooterHeight">
       <template #[item]="data" v-for="item in Object.keys($slots)">
         <slot :name="item" v-bind="data || {}"></slot>
