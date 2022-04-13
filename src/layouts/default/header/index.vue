@@ -21,6 +21,7 @@
     <!-- left end -->
     <!-- action  -->
     <div :class="`${prefixCls}-action`">
+      <FullScreen v-if="getShowFullScreen" :class="`${prefixCls}-action__item fullscreen-item`" />
       <SettingDrawer v-if="getShowSetting" :class="`${prefixCls}-action__item`" />
     </div>
   </Header>
@@ -45,7 +46,7 @@
   import { SettingButtonPositionEnum } from '/@/enums/appEnum';
   // import { AppLocalePicker } from '/@/components/Application';
 
-  import { LayoutBreadcrumb } from './components';
+  import { LayoutBreadcrumb, FullScreen } from './components';
   import { useAppInject } from '/@/hooks/web/useAppInject';
   import { useDesign } from '/@/hooks/web/useDesign';
 
@@ -59,6 +60,7 @@
       AppLogo,
       LayoutTrigger,
       LayoutBreadcrumb,
+      FullScreen,
       SettingDrawer: createAsyncComponent(() => import('/@/layouts/default/setting/index.vue'), {
         loading: true,
       }),
