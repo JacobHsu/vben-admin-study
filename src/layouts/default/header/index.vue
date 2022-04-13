@@ -21,6 +21,7 @@
     <!-- left end -->
     <!-- action  -->
     <div :class="`${prefixCls}-action`">
+      <Notify v-if="getShowNotice" :class="`${prefixCls}-action__item notify-item`" />
       <FullScreen v-if="getShowFullScreen" :class="`${prefixCls}-action__item fullscreen-item`" />
       <SettingDrawer v-if="getShowSetting" :class="`${prefixCls}-action__item`" />
     </div>
@@ -46,7 +47,7 @@
   import { SettingButtonPositionEnum } from '/@/enums/appEnum';
   // import { AppLocalePicker } from '/@/components/Application';
 
-  import { LayoutBreadcrumb, FullScreen } from './components';
+  import { LayoutBreadcrumb, FullScreen, Notify } from './components';
   import { useAppInject } from '/@/hooks/web/useAppInject';
   import { useDesign } from '/@/hooks/web/useDesign';
 
@@ -61,6 +62,7 @@
       LayoutTrigger,
       LayoutBreadcrumb,
       FullScreen,
+      Notify,
       SettingDrawer: createAsyncComponent(() => import('/@/layouts/default/setting/index.vue'), {
         loading: true,
       }),
