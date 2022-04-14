@@ -23,6 +23,12 @@
     <div :class="`${prefixCls}-action`">
       <Notify v-if="getShowNotice" :class="`${prefixCls}-action__item notify-item`" />
       <FullScreen v-if="getShowFullScreen" :class="`${prefixCls}-action__item fullscreen-item`" />
+      <AppLocalePicker
+        v-if="getShowLocalePicker"
+        :reload="true"
+        :showText="false"
+        :class="`${prefixCls}-action__item`"
+      />
       <SettingDrawer v-if="getShowSetting" :class="`${prefixCls}-action__item`" />
     </div>
   </Header>
@@ -45,7 +51,7 @@
 
   import { MenuModeEnum, MenuSplitTyeEnum } from '/@/enums/menuEnum';
   import { SettingButtonPositionEnum } from '/@/enums/appEnum';
-  // import { AppLocalePicker } from '/@/components/Application';
+  import { AppLocalePicker } from '/@/components/Application';
 
   import { LayoutBreadcrumb, FullScreen, Notify } from './components';
   import { useAppInject } from '/@/hooks/web/useAppInject';
@@ -61,6 +67,7 @@
       AppLogo,
       LayoutTrigger,
       LayoutBreadcrumb,
+      AppLocalePicker,
       FullScreen,
       Notify,
       SettingDrawer: createAsyncComponent(() => import('/@/layouts/default/setting/index.vue'), {
