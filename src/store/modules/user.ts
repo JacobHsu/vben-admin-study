@@ -8,11 +8,14 @@ import { ROLES_KEY, TOKEN_KEY, USER_INFO_KEY } from '/@/enums/cacheEnum';
 import { getAuthCache, setAuthCache } from '/@/utils/auth';
 import { GetUserInfoModel, LoginParams } from '/@/api/sys/model/userModel';
 import { doLogout, getUserInfo, loginApi } from '/@/api/sys/user';
+import { useI18n } from '/@/hooks/web/useI18n';
+import { useMessage } from '/@/hooks/web/useMessage';
 import { router } from '/@/router';
 import { usePermissionStore } from '/@/store/modules/permission';
 import { RouteRecordRaw } from 'vue-router';
 import { PAGE_NOT_FOUND_ROUTE } from '/@/router/routes/basic';
 import { isArray } from '/@/utils/is';
+import { h } from 'vue';
 
 interface UserState {
   userInfo: Nullable<UserInfo>;
@@ -148,7 +151,22 @@ export const useUserStore = defineStore({
       this.setSessionTimeout(false);
       this.setUserInfo(null);
       goLogin && router.push(PageEnum.BASE_LOGIN);
-    },     
+    },
+      /**
+     * @description: Confirm before logging out
+     */
+      confirmLoginOut() {
+        const { createConfirm } = useMessage();
+        const { t } = useI18n();
+        createConfirm({
+          iconType: 'warning',
+          title: () => h('span', t('sys.app.logoutTip')),
+          content: () => h('span', t('sys.app.logoutMessage')),
+          onOk: async () => {
+            await this.logout(true);
+          },
+        });
+      },     
   },
 });
 
