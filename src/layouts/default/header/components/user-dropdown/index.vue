@@ -54,7 +54,7 @@
 
   import { createAsyncComponent } from '/@/utils/factory/createAsyncComponent';
 
-  type MenuEvent = 'logout' | 'doc' | 'lock';
+  // type MenuEvent = 'logout' | 'doc' | 'lock';
 
   export default defineComponent({
     name: 'UserDropdown',
@@ -95,7 +95,8 @@
         openWindow(DOC_URL);
       }
 
-      function handleMenuClick(e: { key: MenuEvent }) {
+      function handleMenuClick(e) {
+        // : { key: MenuEvent }
         switch (e.key) {
           case 'logout':
             handleLoginOut();
