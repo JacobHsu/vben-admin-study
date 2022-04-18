@@ -1,16 +1,18 @@
 <template>
   <BasicModal
     :footer="null"
-    :title="lockScreen"
+    :title="t('layout.header.lockScreen')"
     v-bind="$attrs"
     :class="prefixCls"
-    @register="register"
   >
+    Modal Info.
   </BasicModal>
 
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
+  import { useI18n } from '/@/hooks/web/useI18n';
+  import { useDesign } from '/@/hooks/web/useDesign';
   import { BasicModal } from '/@/components/Modal/index';
   // https://vvbin.cn/doc-next/components/modal.html
   export default defineComponent({
@@ -18,7 +20,12 @@
     components: { BasicModal },
 
     setup() {
-      return {};
+      const { t } = useI18n();
+      const { prefixCls } = useDesign('header-lock-modal');
+      return {
+        t,
+        prefixCls,
+      };
     },
   });
 </script>
