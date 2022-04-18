@@ -32,7 +32,7 @@
       </Menu>
     </template>
   </Dropdown>
-  <!-- <LockAction @register="register" /> -->
+  <LockAction @register="register" />
 </template>
 <script lang="ts">
   // components
@@ -63,7 +63,7 @@
       Menu,
       MenuItem: createAsyncComponent(() => import('./DropMenuItem.vue')),
       MenuDivider: Menu.Divider,
-      // LockAction: createAsyncComponent(() => import('../lock/LockModal.vue')),
+      LockAction: createAsyncComponent(() => import('../lock/LockModal.vue')),
     },
     props: {
       theme: propTypes.oneOf(['dark', 'light']),
