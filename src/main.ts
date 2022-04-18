@@ -5,6 +5,7 @@ import '/@/design/index.less';
 import { createApp } from 'vue'
 import App from './App.vue'
 import { initAppConfigStore } from '/@/logics/initAppConfig';
+import { setupErrorHandle } from '/@/logics/error-handle';
 import { router, setupRouter } from '/@/router';
 import { setupRouterGuard } from '/@/router/guard';
 import { setupStore } from '/@/store';
@@ -33,6 +34,9 @@ async function bootstrap() {
 
   // Register global directive
   setupGlobDirectives(app);
+
+  // Configure global error handling
+  setupErrorHandle(app);
 
   app.mount('#app');
 }
