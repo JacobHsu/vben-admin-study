@@ -4,16 +4,34 @@
     :title="t('layout.header.lockScreen')"
     v-bind="$attrs"
     :class="prefixCls"
+    @register="register"
   >
-    Modal Info.
+    <div :class="`${prefixCls}__entry`">
+      <div :class="`${prefixCls}__header`">
+        <img :src="avatar" :class="`${prefixCls}__header-img`" />
+        <p :class="`${prefixCls}__header-name`">
+          {{ getRealName }}
+        </p>
+      </div>
+
+
+
+      <div :class="`${prefixCls}__footer`">
+        <a-button type="primary" block class="mt-2" @click="handleLock">
+          {{ t('layout.header.lockScreenBtn') }}
+        </a-button>
+      </div>
+    </div>
   </BasicModal>
 
 </template>
 <script lang="ts">
-  import { defineComponent } from 'vue';
+  import { defineComponent, computed } from 'vue';
   import { useI18n } from '/@/hooks/web/useI18n';
   import { useDesign } from '/@/hooks/web/useDesign';
-  import { BasicModal } from '/@/components/Modal/index';
+  import { BasicModal, useModalInner } from '/@/components/Modal/index';
+  import { useUserStore } from '/@/store/modules/user';
+  import headerImg from '/@/assets/images/header.jpg';
   // https://vvbin.cn/doc-next/components/modal.html
   export default defineComponent({
     name: 'LockModal',
@@ -22,9 +40,28 @@
     setup() {
       const { t } = useI18n();
       const { prefixCls } = useDesign('header-lock-modal');
+      const userStore = useUserStore();
+
+      const getRealName = computed(() => userStore.getUserInfo?.realName);
+
+      const [register, { closeModal }] = useModalInner();
+
+      async function handleLock() {
+        closeModal();
+      }
+
+      const avatar = computed(() => {
+        const { avatar } = userStore.getUserInfo;
+        return avatar || headerImg;
+      });
+
       return {
         t,
         prefixCls,
+        getRealName,
+        register,
+        handleLock,
+        avatar,
       };
     },
   });
