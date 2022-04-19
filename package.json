@@ -11,7 +11,7 @@
     "@ant-design/colors": "^6.0.0",
     "@iconify/iconify": "^2.1.2",
     "@vueuse/core": "^7.6.2",
-    "ant-design-vue": "3.0.0-beta.8",
+    "ant-design-vue": "2.2.8",
     "crypto-js": "^4.1.1",
     "dayjs": "^1.10.7",
     "echarts": "^5.3.1",
