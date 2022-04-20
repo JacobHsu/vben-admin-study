@@ -14,7 +14,7 @@
         </p>
       </div>
 
-
+      <BasicForm @register="registerForm" />
 
       <div :class="`${prefixCls}__footer`">
         <a-button type="primary" block class="mt-2" @click="handleLock">
@@ -30,14 +30,14 @@
   import { useI18n } from '/@/hooks/web/useI18n';
   import { useDesign } from '/@/hooks/web/useDesign';
   import { BasicModal, useModalInner } from '/@/components/Modal/index';
-  import { useForm } from '/@/components/Form/index';
+  import { BasicForm, useForm } from '/@/components/Form/index';
   import { useUserStore } from '/@/store/modules/user';
   import { useLockStore } from '/@/store/modules/lock';
   import headerImg from '/@/assets/images/header.jpg';
   // https://vvbin.cn/doc-next/components/modal.html
   export default defineComponent({
     name: 'LockModal',
-    components: { BasicModal },
+    components: { BasicModal, BasicForm },
 
     setup() {
       const { t } = useI18n();
@@ -84,6 +84,7 @@
         prefixCls,
         getRealName,
         register,
+        registerForm,
         handleLock,
         avatar,
       };
