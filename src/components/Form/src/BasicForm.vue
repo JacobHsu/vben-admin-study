@@ -8,8 +8,7 @@
   >
     <Row v-bind="getRow">
       <slot name="formHeader"></slot>
-      FormItem
-      <!-- <template v-for="schema in getSchema" :key="schema.field">
+      <template v-for="schema in getSchema" :key="schema.field">
         <FormItem
           :tableAction="tableAction"
           :formActionType="formActionType"
@@ -25,7 +24,7 @@
         </FormItem>
       </template>
 
-      <FormAction v-bind="getFormActionBindProps" @toggle-advanced="handleToggleAdvanced">
+      <!-- <FormAction v-bind="getFormActionBindProps" @toggle-advanced="handleToggleAdvanced">
         <template
           #[item]="data"
           v-for="item in ['resetBefore', 'submitBefore', 'advanceBefore', 'advanceAfter']"
@@ -44,7 +43,7 @@
 
   import { defineComponent, reactive, ref, computed, unref, onMounted, watch, nextTick } from 'vue';
   import { Form, Row } from 'ant-design-vue';
-  // import FormItem from './components/FormItem.vue';
+  import FormItem from './components/FormItem.vue';
   // import FormAction from './components/FormAction.vue';
 
   import { dateItemType } from './helper';
@@ -66,7 +65,7 @@
   export default defineComponent({
     name: 'BasicForm',
     // components: { FormItem, Form, Row, FormAction },
-    components: { Form, Row },
+    components: { FormItem, Form, Row },
     props: basicProps,
     emits: ['advanced-change', 'reset', 'submit', 'register'],
     setup(props, { emit, attrs }) {
