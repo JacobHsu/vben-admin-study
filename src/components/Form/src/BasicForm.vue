@@ -24,14 +24,14 @@
         </FormItem>
       </template>
 
-      <!-- <FormAction v-bind="getFormActionBindProps" @toggle-advanced="handleToggleAdvanced">
+      <FormAction v-bind="getFormActionBindProps" @toggle-advanced="handleToggleAdvanced">
         <template
           #[item]="data"
           v-for="item in ['resetBefore', 'submitBefore', 'advanceBefore', 'advanceAfter']"
         >
           <slot :name="item" v-bind="data || {}"></slot>
         </template>
-      </FormAction> -->
+      </FormAction>
       <slot name="formFooter"></slot>
     </Row>
   </Form>
@@ -44,7 +44,7 @@
   import { defineComponent, reactive, ref, computed, unref, onMounted, watch, nextTick } from 'vue';
   import { Form, Row } from 'ant-design-vue';
   import FormItem from './components/FormItem.vue';
-  // import FormAction from './components/FormAction.vue';
+  import FormAction from './components/FormAction.vue';
 
   import { dateItemType } from './helper';
   import { dateUtil } from '/@/utils/dateUtil';
@@ -64,8 +64,7 @@
 
   export default defineComponent({
     name: 'BasicForm',
-    // components: { FormItem, Form, Row, FormAction },
-    components: { FormItem, Form, Row },
+    components: { FormItem, Form, Row, FormAction },
     props: basicProps,
     emits: ['advanced-change', 'reset', 'submit', 'register'],
     setup(props, { emit, attrs }) {
